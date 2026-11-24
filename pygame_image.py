@@ -14,6 +14,7 @@ def main():
     tmr = 0
     #動作部分
     while True:
+        #ゲームの終了条件とスコアの表示
         for event in pg.event.get():
             if event.type == pg.QUIT: return
 

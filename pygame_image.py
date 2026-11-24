@@ -19,21 +19,22 @@ def main():
     #動作部分
     while True:
         #ゲームの終了条件とスコアの表示
-        x = (-tmr * 10) % -3200
+        x = -tmr % -3200
         for event in pg.event.get():
             if event.type == pg.QUIT: return
         screen.blit(bg_img,[x,0])
         screen.blit(pg.transform.flip(bg_img,True,False),[x+1600,0])
         screen.blit(bg_img,[x+3200,0])
         what = pg.key.get_pressed()
-        if(what[pg.K_d]):
-            kouka_rct.move_ip((1,0))
-        if(what[pg.K_a]):
+        if(what[pg.K_RIGHT]):
+            kouka_rct.move_ip((2,0))
+        if(what[pg.K_LEFT]):
             kouka_rct.move_ip((-1,0))
-        if(what[pg.K_w]):
+        if(what[pg.K_UP]):
             kouka_rct.move_ip((0,-1))
-        if(what[pg.K_s]):
+        if(what[pg.K_DOWN]):
             kouka_rct.move_ip((0,1))
+        kouka_rct.move_ip((-1,0))
         screen.blit(koukaton,kouka_rct)
         pg.display.update()
         tmr += 1        

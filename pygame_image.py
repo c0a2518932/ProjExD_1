@@ -14,6 +14,8 @@ def main():
     koukaton = pg.image.load("fig/3.png")
     koukaton = pg.transform.flip(koukaton,True,False)
     kouka_rct = koukaton.get_rect()
+    kouka_x = 0
+    kouka_y = 0
     kouka_rct.center = 300,200
     tmr = 0
     #動作部分
@@ -27,14 +29,16 @@ def main():
         screen.blit(bg_img,[x+3200,0])
         what = pg.key.get_pressed()
         if(what[pg.K_RIGHT]):
-            kouka_rct.move_ip((2,0))
+            kouka_x += 2
         if(what[pg.K_LEFT]):
-            kouka_rct.move_ip((-1,0))
+            kouka_x -= 1
         if(what[pg.K_UP]):
-            kouka_rct.move_ip((0,-1))
+            kouka_y -= 1
         if(what[pg.K_DOWN]):
-            kouka_rct.move_ip((0,1))
-        kouka_rct.move_ip((-1,0))
+            kouka_y += 1
+        kouka_rct.move_ip((-1 + kouka_x,kouka_y))
+        kouka_x = 0
+        kouka_y = 0
         screen.blit(koukaton,kouka_rct)
         pg.display.update()
         tmr += 1        
